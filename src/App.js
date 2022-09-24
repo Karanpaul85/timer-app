@@ -7,7 +7,9 @@ function App() {
   const [start, setStart] = useState(false);
   const [pause, setPause] = useState(false);
   const [intervalId, setIntervalId] = useState(0);
-  useEffect(() => {}, [setTimer]);
+  useEffect(() => {
+    return () => clearInterval(intervalId);
+  }, [start]);
   //startFun
   const startFun = () => {
     setStart(true);
@@ -29,9 +31,9 @@ function App() {
         Number.parseInt(mins) === 0 &&
         Number.parseInt(secs) === 0
       ) {
-        clearInterval(intervalId);
         setTimer('00:03:00');
         setStart(false);
+        clearInterval(intervalId);
       }
       finalTime--;
     }, 1000);
@@ -39,8 +41,8 @@ function App() {
   };
   //pauseFun
   const pauseFun = () => {
-    clearInterval(intervalId);
     setPause(true);
+    clearInterval(intervalId);
   };
   //continueFun
   const continueFun = () => {
@@ -49,13 +51,14 @@ function App() {
   };
   //reset
   const resetFun = () => {
-    clearInterval(intervalId);
     setTimer('00:03:00');
     setStart(false);
+    setPause(false);
+    clearInterval(intervalId);
   };
   return (
     <div className={styles.app}>
-      <Display timer={timer} />
+      <Display timer={timer} newIntervalId={intervalId} />
       <div className={styles.buttonSec}>
         {!start && (
           <Button value="Start" icon="play_arrow" onClick={() => startFun()} />
