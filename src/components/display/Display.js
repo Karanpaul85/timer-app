@@ -1,5 +1,9 @@
 import style from '../display/Display.module.css';
-const Display = ({ timer }) => {
-  return <div className={style.displaySec}>{timer}</div>;
+const Display = ({ timer, worning }) => {
+  return (
+    <div className={`${style.displaySec} ${worning ? style.worning : ''}`}>
+      {timer}
+    </div>
+  );
 };
 export default Display;

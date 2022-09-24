@@ -6,6 +6,21 @@
   font-weight: 500;
   margin-bottom: 35px;
 }
+.worning {
+  color: #e53333;
+  animation: mymove 0.5s infinite;
+}
+@keyframes mymove {
+  0% {
+    color: #e53333;
+  }
+  50% {
+    color: #222;
+  }
+  100% {
+    color: #e53333;
+  }
+}
 @media (max-width: 480px) {
   .displaySec {
     font-size: 4.5rem;
