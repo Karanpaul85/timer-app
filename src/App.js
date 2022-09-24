@@ -9,7 +9,7 @@ function App() {
   const [intervalId, setIntervalId] = useState(0);
   useEffect(() => {
     return () => clearInterval(intervalId);
-  }, [start]);
+  }, [start, intervalId]);
   //startFun
   const startFun = () => {
     setStart(true);
